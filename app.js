@@ -1,5 +1,8 @@
+// importing axios module
 const axios = require('axios');
+// importing yargs module
 const yargs = require('yargs');
+// importing ip 
 const ip = require('ip');
 const argv = yargs
       .options({
@@ -13,9 +16,12 @@ const argv = yargs
 .help()
 .alias('help', 'h')
 .argv
+
 var url = `http://ip-api.com/json/${encodeURIComponent(argv.a)}`
+// http request
 axios.get(url)
 .then((response)=> {
+      //if respone failed
       if (response.data.status === 'fail') {
             throw new Error('Unable to find that address')
       }
